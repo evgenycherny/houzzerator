@@ -1,9 +1,9 @@
 package com.e3.houzzearator.datascrapper.download;
 
-import com.e3.houzzerator.installcert.download.MissingSubstitutionParameterException;
-import com.e3.houzzerator.installcert.download.ScanContext;
-import com.e3.houzzerator.installcert.download.DefaultSubstitutor;
-import com.e3.houzzerator.installcert.download.model.ISubstitutor;
+import com.e3.houzzerator.datascrapper.download.MissingSubstitutionParameterException;
+import com.e3.houzzerator.datascrapper.download.ScanContext;
+import com.e3.houzzerator.datascrapper.download.DefaultSubstitutor;
+import com.e3.houzzerator.datascrapper.download.model.ISubstitutor;
 import org.junit.Assert;
 import org.junit.Test;
 

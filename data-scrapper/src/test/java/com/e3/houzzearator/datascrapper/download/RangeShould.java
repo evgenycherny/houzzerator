@@ -1,6 +1,6 @@
 package com.e3.houzzearator.datascrapper.download;
 
-import com.e3.houzzerator.installcert.download.Range;
+import com.e3.houzzerator.datascrapper.download.Range;
 import org.junit.Assert;
 import org.junit.Test;
 

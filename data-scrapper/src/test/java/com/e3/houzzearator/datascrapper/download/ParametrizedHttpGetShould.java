@@ -1,7 +1,7 @@
 package com.e3.houzzearator.datascrapper.download;
 
-import com.e3.houzzerator.installcert.download.ParametrizedHttpGet;
-import com.e3.houzzerator.installcert.download.ScanContext;
+import com.e3.houzzerator.datascrapper.download.ParametrizedHttpGet;
+import com.e3.houzzerator.datascrapper.download.ScanContext;
 import org.apache.http.message.BasicHeader;
 import org.junit.Assert;
 import org.junit.Test;

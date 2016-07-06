@@ -1,4 +1,4 @@
-package com.e3.houzzerator.installcert.download;
+package com.e3.houzzerator.datascrapper.download;
 
 import org.apache.http.Header;
 import org.apache.http.client.methods.HttpGet;

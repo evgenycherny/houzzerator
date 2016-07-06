@@ -1,6 +1,6 @@
-package com.e3.houzzerator.installcert.download;
+package com.e3.houzzerator.datascrapper.download;
 
-import com.e3.houzzerator.installcert.download.model.ISubstitutor;
+import com.e3.houzzerator.datascrapper.download.model.ISubstitutor;
 
 /**
  * Author:  etshiorny

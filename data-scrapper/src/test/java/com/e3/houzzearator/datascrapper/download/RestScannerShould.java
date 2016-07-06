@@ -1,7 +1,7 @@
 package com.e3.houzzearator.datascrapper.download;
 
 import com.e3.houzzearator.datascrapper.download.matchers.RequestMatcher;
-import com.e3.houzzerator.installcert.download.*;
+import com.e3.houzzerator.datascrapper.download.*;
 import org.apache.http.client.HttpClient;
 import org.junit.Assert;
 import org.junit.Before;

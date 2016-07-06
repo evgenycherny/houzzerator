@@ -1,4 +1,4 @@
-package com.e3.houzzerator.installcert.download.model;
+package com.e3.houzzerator.datascrapper.download.model;
 
 /**
  * Author:  etshiorny

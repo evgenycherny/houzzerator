@@ -1,7 +1,7 @@
-package com.e3.houzzerator.installcert;
+package com.e3.houzzerator.datascrapper;
 
-import com.e3.houzzerator.installcert.download.ParametrizedHttpGet;
-import com.e3.houzzerator.installcert.download.RestScanner;
+import com.e3.houzzerator.datascrapper.download.ParametrizedHttpGet;
+import com.e3.houzzerator.datascrapper.download.RestScanner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
