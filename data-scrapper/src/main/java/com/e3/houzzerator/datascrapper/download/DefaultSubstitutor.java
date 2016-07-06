@@ -1,11 +1,13 @@
 package com.e3.houzzerator.datascrapper.download;
 
 import com.e3.houzzerator.datascrapper.download.model.ISubstitutor;
+import lombok.Data;
 
 /**
  * Author:  etshiorny
  * Date:    7/2/16.
  */
+@Data
 public class DefaultSubstitutor implements ISubstitutor {
     private ScanContext context;
     private static final String EXPRESSION_START_MARKER = "${";

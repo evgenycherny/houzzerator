@@ -13,6 +13,13 @@ import org.junit.Test;
  */
 public class DefaultSubstitutorShould {
     @Test
+    public void instanciate() {
+        DefaultSubstitutor substitutor = new DefaultSubstitutor();
+        Assert.assertNotNull(substitutor.getContext());
+        Assert.assertEquals(0, substitutor.getContext().size());
+    }
+
+    @Test
     public void returnNonParametrizedStringAsIs() {
         ScanContext context = new ScanContext();
         DefaultSubstitutor substitutor = new DefaultSubstitutor(context);
