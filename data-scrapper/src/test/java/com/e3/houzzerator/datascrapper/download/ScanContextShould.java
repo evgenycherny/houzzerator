@@ -1,4 +1,4 @@
-package com.e3.houzzearator.datascrapper.download;
+package com.e3.houzzerator.datascrapper.download;
 
 import com.e3.houzzerator.datascrapper.download.ScanContext;
 import org.junit.Assert;

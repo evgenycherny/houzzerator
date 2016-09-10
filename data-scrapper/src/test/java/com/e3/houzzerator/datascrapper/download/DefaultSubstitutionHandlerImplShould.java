@@ -1,9 +1,6 @@
-package com.e3.houzzearator.datascrapper.download;
+package com.e3.houzzerator.datascrapper.download;
 
-import com.e3.houzzerator.datascrapper.download.MissingSubstitutionParameterException;
-import com.e3.houzzerator.datascrapper.download.ScanContext;
-import com.e3.houzzerator.datascrapper.download.DefaultSubstitutor;
-import com.e3.houzzerator.datascrapper.download.model.ISubstitutor;
+import com.e3.houzzerator.datascrapper.download.model.SubstitutionHandler;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -11,18 +8,27 @@ import org.junit.Test;
  * Author:  etshiorny
  * Date:    7/1/16.
  */
-public class DefaultSubstitutorShould {
+public class DefaultSubstitutionHandlerImplShould {
     @Test
     public void instanciate() {
-        DefaultSubstitutor substitutor = new DefaultSubstitutor();
+        DefaultSubstitutionHandlerImpl substitutor = new DefaultSubstitutionHandlerImpl();
         Assert.assertNotNull(substitutor.getContext());
         Assert.assertEquals(0, substitutor.getContext().size());
     }
 
     @Test
+    public void allowUsingProperties() {
+        DefaultSubstitutionHandlerImpl substitutor = new DefaultSubstitutionHandlerImpl();
+        ScanContext ctx = new ScanContext();
+        ctx.put("test","value");
+        substitutor.setContext(ctx);
+        Assert.assertEquals(1, substitutor.getContext().size());
+    }
+
+    @Test
     public void returnNonParametrizedStringAsIs() {
         ScanContext context = new ScanContext();
-        DefaultSubstitutor substitutor = new DefaultSubstitutor(context);
+        DefaultSubstitutionHandlerImpl substitutor = new DefaultSubstitutionHandlerImpl(context);
         Assert.assertEquals("abcd",substitutor.substitute("abcd"));
     }
 
@@ -30,7 +36,7 @@ public class DefaultSubstitutorShould {
     public void substituteSingleParameter() {
         ScanContext context = new ScanContext();
         context.put("param1","value1");
-        ISubstitutor substitutor = new DefaultSubstitutor(context);
+        SubstitutionHandler substitutor = new DefaultSubstitutionHandlerImpl(context);
         Assert.assertEquals("abvalue1cd",substitutor.substitute("ab${param1}cd"));
     }
 
@@ -38,7 +44,7 @@ public class DefaultSubstitutorShould {
     public void substituteMultipleParameterApperances() {
         ScanContext context = new ScanContext();
         context.put("param1","value1");
-        ISubstitutor substitutor = new DefaultSubstitutor(context);
+        SubstitutionHandler substitutor = new DefaultSubstitutionHandlerImpl(context);
         Assert.assertEquals("abvalue1cdvalue1ef",substitutor.substitute("ab${param1}cd${param1}ef"));
     }
     @Test
@@ -46,13 +52,13 @@ public class DefaultSubstitutorShould {
         ScanContext context = new ScanContext();
         context.put("param1","value1");
         context.put("param2","value2");
-        ISubstitutor substitutor = new DefaultSubstitutor(context);
+        SubstitutionHandler substitutor = new DefaultSubstitutionHandlerImpl(context);
         Assert.assertEquals("abvalue1cdvalue2ef",substitutor.substitute("ab${param1}cd${param2}ef"));
     }
     @Test(expected = MissingSubstitutionParameterException.class)
     public void throwWhenParameterNotFoundInContext() {
         ScanContext context = new ScanContext();
-        ISubstitutor substitutor = new DefaultSubstitutor(context);
+        SubstitutionHandler substitutor = new DefaultSubstitutionHandlerImpl(context);
         substitutor.substitute("ab${param1}cd");
     }
 }

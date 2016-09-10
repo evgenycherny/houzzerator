@@ -1,0 +1,27 @@
+<scan>
+    <method>GET</method>
+    <url>http://example.com/get/${id}</url>
+    <header>
+        <key>Content-Type</key>
+        <value>application/json</value>
+    </header>
+    <header>
+        <key>Content-Length</key>
+        <value>1</value>
+    </header>
+    <parameter>
+        <name>id</name>
+        <range>
+            <from>1</from>
+            <to>2</to>
+            <step>1</step>
+        </range>
+    </parameter>
+    <parameter>
+        <name>id1</name>
+        <range>
+            <from>1</from>
+            <to>2</to>
+        </range>
+    </parameter>
+</scan>

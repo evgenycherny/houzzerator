@@ -1,8 +1,13 @@
 package com.e3.houzzerator.datascrapper.download;
 
+import com.e3.houzzerator.datascrapper.download.datamodel.Range;
+import com.e3.houzzerator.datascrapper.download.datamodel.ScanParameter;
+import com.e3.houzzerator.datascrapper.download.datamodel.ScanTemplate;
+import com.e3.houzzerator.datascrapper.download.model.SubstitutionHandler;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpUriRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
@@ -15,21 +20,19 @@ import java.util.List;
  */
 
 @Data
+@Slf4j
 public class RestScanner {
-    private ParametrizedHttpGet request;
-    private List<ScanParameter> scanParameters;
+
+    private ScanTemplate scanTemplate;
 
     @Autowired
     private HttpClient httpClient;
+    @Autowired
+    private SubstitutionHandler substitutionHandler;
 
     public RestScanner() {
-        this.scanParameters = new ArrayList<>();
-    }
-    public RestScanner(ParametrizedHttpGet request) {
-        this.request = request;
-        this.scanParameters = new ArrayList<>();
-    }
 
+    }
 
     public void scan() {
         try {
@@ -50,22 +53,14 @@ public class RestScanner {
     }
 
     private void executeRequestWithGivenContext(ScanContext ctx) throws IOException {
-        HttpGet req = createRequestFromParametrizedRequest(ctx);
+        substitutionHandler.setContext(ctx);
+        HttpUriRequest req = scanTemplate.buildRequest(substitutionHandler);
         httpClient.execute(req);
-    }
-
-    private HttpGet createRequestFromParametrizedRequest(ScanContext ctx) {
-        request.setContext(ctx);
-
-        HttpGet req =  new HttpGet();
-        req.setHeaders(request.getAllHeaders());
-        req.setURI(request.getURI());
-        return req;
     }
 
     private List<ScanContext> populateListWithContextMutationsForAllScanParameters() {
         List<ScanContext> list = prepareInitialContextList();
-        for (ScanParameter param: scanParameters) {
+        for (ScanParameter param: scanTemplate.getParameters()) {
             list = addMutationsForSingleScanParameter(list, param);
         }
         return list;
@@ -81,13 +76,12 @@ public class RestScanner {
         List<ScanContext> outList = new ArrayList<>();
         for (ScanContext inContext: inList) {
             Range range = param.getRange();
-            for (int i=range.getFrom();i<=range.getTo(); i+=range.getStep()) {
+            range.iterate((i) -> {
                 ScanContext context = (ScanContext)inContext.clone();
-                context.put(param.getName(), Integer.valueOf(i).toString());
+                context.put(param.getName(), i.toString());
                 outList.add(context);
-            }
+            });
         }
         return outList;
     }
-
 }

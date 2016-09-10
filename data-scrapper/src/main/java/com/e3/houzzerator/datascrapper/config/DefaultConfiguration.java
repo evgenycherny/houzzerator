@@ -1,8 +1,8 @@
 package com.e3.houzzerator.datascrapper.config;
 
-import com.e3.houzzerator.datascrapper.download.DefaultSubstitutor;
+import com.e3.houzzerator.datascrapper.download.DefaultSubstitutionHandlerImpl;
 import com.e3.houzzerator.datascrapper.download.RestScanner;
-import com.e3.houzzerator.datascrapper.download.model.ISubstitutor;
+import com.e3.houzzerator.datascrapper.download.model.SubstitutionHandler;
 import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.springframework.context.annotation.Bean;
@@ -27,7 +27,7 @@ public class DefaultConfiguration {
     }
 
     @Bean
-    public ISubstitutor getSubstitutor() {
-        return new DefaultSubstitutor();
+    public SubstitutionHandler getSubstitutor() {
+        return new DefaultSubstitutionHandlerImpl();
     }
 }

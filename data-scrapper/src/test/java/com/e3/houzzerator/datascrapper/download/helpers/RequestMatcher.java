@@ -1,4 +1,4 @@
-package com.e3.houzzearator.datascrapper.download.matchers;
+package com.e3.houzzerator.datascrapper.download.helpers;
 
 import org.apache.http.client.methods.HttpUriRequest;
 import org.mockito.ArgumentMatcher;
@@ -6,10 +6,6 @@ import org.mockito.ArgumentMatcher;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Author:  etshiorny
- * Date:    6/27/16.
- */
 public class RequestMatcher extends ArgumentMatcher<HttpUriRequest> {
     private String path;
     private Map<String, String> headers;
